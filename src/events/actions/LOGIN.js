@@ -8,7 +8,7 @@ module.exports = function(data, callback){
 	hash = hash.join("");
 
 	mysql.query({
-		sql: 'UPDATE `users` SET `hash` = ? WHERE `email` = ? AND `password` = ?',
+		sql: 'INSERT INTO `sessions` (`hash`) SELECT ? AS `hash` FROM `users` WHERE `email` = ? AND `password` = ?',
 		timeout: 1000,
 		values: [
 			hash,
